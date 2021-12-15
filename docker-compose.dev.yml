@@ -1,0 +1,39 @@
+version: '3'
+networks:
+  transactions:
+    external: true
+services:
+  app:
+    container_name: 'transactions-service'
+    image: node:14.16.0-alpine
+    working_dir: /usr/src/app
+    restart: always
+    command: yarn start:dev
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - PORT=8080
+    networks:
+      - transactions
+    depends_on:
+      - mongo
+    links:
+      - mongo
+  mongo:
+    container_name: 'transactions-dev-db'
+    image: mongo
+    restart: always
+    command: mongod --port 27018
+    ports:
+      - '27018:27018'
+    volumes:
+      - ./.docker/db/mongodb:/data/db
+      - ./.docker/db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'root'
+      MONGO_INITDB_DATABASE: 'transactions'
+    networks:
+      - transactions
