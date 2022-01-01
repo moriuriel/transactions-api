@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory, ModelDefinition, Schema } from '@nestjs/mongoose';
+import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 
 export type UserDocument = User & Document;
 
