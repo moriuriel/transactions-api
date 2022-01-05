@@ -23,7 +23,9 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/jwt": "^8.0.0",
     "@nestjs/mongoose": "^9.0.1",
+    "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
