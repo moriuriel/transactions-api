@@ -1,4 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { hash } from 'bcryptjs';
+import { DATABASE_ERROR } from 'src/exeception';
+
 import { ICreateUser } from '../interfaces';
 import { IUserRepository } from '../repositories/IUserRepository.interface';
 import { UserRepository } from '../repositories/User.repository';
@@ -11,6 +14,23 @@ export class CreateUserService {
   ) {}
 
   async execute(user: ICreateUser): Promise<User> {
-    return this.userRepository.create(user);
+    const { email, name, password, user_name } = user;
+
+    const hashedPassword = await this.generateHash(password);
+
+    return this.userRepository
+      .create({
+        email,
+        name,
+        user_name,
+        password: hashedPassword,
+      })
+      .catch((error) => {
+        throw new DATABASE_ERROR(error);
+      });
+  }
+
+  private async generateHash(password: string): Promise<string> {
+    return hash(password, 8);
   }
 }
