@@ -18,4 +18,8 @@ export class UserRepository implements IUserRepository {
   async create(user: ICreateUser): Promise<User> {
     return this.userRespository.create(user);
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return this.userRespository.findOne({ email });
+  }
 }
