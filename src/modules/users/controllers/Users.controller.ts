@@ -5,8 +5,10 @@ import {
   HttpStatus,
   Post,
   Response,
+  UseGuards,
 } from '@nestjs/common';
 import { Response as ExpressResponse } from 'express';
+import { JwtAuthGuard } from 'src/modules/authentication/guards/jwt-auth.guard';
 import { CreateUserDto } from '../dtos';
 import { CreateUserService, FindUsersService } from '../services';
 
@@ -27,6 +29,7 @@ export class UsersController {
     return response.status(HttpStatus.CREATED).json({ user });
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async listAll(@Response() response: ExpressResponse) {
     const users = await this.findUsersService.execute();

@@ -1,3 +1,5 @@
 export interface IDecodedToken {
-  sub: string;
+  email: string;
+  iat: number;
+  exp: number;
 }

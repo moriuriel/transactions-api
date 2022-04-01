@@ -46,7 +46,7 @@ export default class AuthenticationService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    const payload = { sub: checkUserExist.email };
+    const payload = { email: checkUserExist.email };
 
     return {
       access_token: this.jwtService.sign(payload),
