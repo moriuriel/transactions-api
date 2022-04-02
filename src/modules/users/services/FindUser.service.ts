@@ -4,12 +4,12 @@ import { UserRepository } from '../repositories/User.repository';
 import { User } from '../schemas/User.schema';
 
 @Injectable()
-export class FindUsersService {
+export class FindUserService {
   constructor(
     @Inject(UserRepository) private readonly userRepository: IUserRepository,
   ) {}
 
-  async execute(): Promise<User[]> {
-    return this.userRepository.findAll();
+  async execute(email): Promise<User> {
+    return this.userRepository.findByEmail(email);
   }
 }

@@ -4,18 +4,19 @@ import {
   Get,
   HttpStatus,
   Post,
+  Request,
   Response,
   UseGuards,
 } from '@nestjs/common';
 import { Response as ExpressResponse } from 'express';
 import { JwtAuthGuard } from 'src/modules/authentication/guards/jwt-auth.guard';
 import { CreateUserDto } from '../dtos';
-import { CreateUserService, FindUsersService } from '../services';
+import { CreateUserService, FindUserService } from '../services';
 
-@Controller('users')
+@Controller('/user')
 export class UsersController {
   constructor(
-    private readonly findUsersService: FindUsersService,
+    private readonly findUserService: FindUserService,
     private readonly createUserService: CreateUserService,
   ) {}
 
@@ -30,10 +31,11 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
-  async listAll(@Response() response: ExpressResponse) {
-    const users = await this.findUsersService.execute();
+  @Get('/me')
+  async listAll(@Request() request, @Response() response: ExpressResponse) {
+    const { email } = request.user;
+    const user = await this.findUserService.execute(email);
 
-    return response.status(HttpStatus.OK).json({ users });
+    return response.status(HttpStatus.OK).json({ account: user });
   }
 }
