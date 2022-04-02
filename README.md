@@ -39,9 +39,10 @@ $ npm run test:cov
 
 `USERS`
 
-| Endpoint | HTTP Method |    Descrição    |
-| -------- | :---------: | :-------------: |
-| `/users` |   `POST`    | `Criar usuário` |
+| Endpoint   | HTTP Method |        Descrição         |
+| ---------- | :---------: | :----------------------: |
+| `/user`    |   `POST`    |     `Criar usuário`      |
+| `/user/me` |    `GET`    | `Lista dados do usuário` |
 
 `Auth`
 
@@ -65,6 +66,33 @@ curl --request POST \
 	"password": "password",
 	"email": "joe@doe.com"
 }'
+```
+
+- Listar dados do usuário
+
+`Request`
+
+```curl
+  curl --request GET \
+  --url http://localhost:8080/user/me \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZUBkb2UuY29tIiwiaWF0IjoxNjQ4OTI3Mzg3LCJleHAiOjE2NDg5Mjc0NDd9.ufw1OECaKmVzSee8n3JYVw-LxwtqmH5mls5pr8LqKcg'
+```
+
+`Response`
+
+```json
+{
+  "account": {
+    "_id": "62465506c400c6a99f34eb03",
+    "password": "$2a$08$dNf1dcrUoWbLKvdJ/TE.Xe5g5UKeAc5hsP4YWUzM9yZ6g9nG2eVpG",
+    "email": "joe@doe.com",
+    "user_name": "Joe Doe",
+    "name": "Joe Doe",
+    "createdAt": "2022-04-01T01:27:34.366Z",
+    "updatedAt": "2022-04-01T01:27:34.366Z",
+    "__v": 0
+  }
+}
 ```
 
 `Response`
