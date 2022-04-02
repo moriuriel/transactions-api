@@ -18,16 +18,16 @@ export class CreateUserService {
 
     const hashedPassword = await this.generateHash(password);
 
-    return this.userRepository
-      .create({
+    try {
+      return this.userRepository.create({
         email,
         name,
         user_name,
         password: hashedPassword,
-      })
-      .catch((error) => {
-        throw new DATABASE_ERROR(error);
       });
+    } catch (error) {
+      throw new DATABASE_ERROR(error);
+    }
   }
 
   private async generateHash(password: string): Promise<string> {
