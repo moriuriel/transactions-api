@@ -13,6 +13,23 @@
 $ yarn install
 ```
 
+## Env
+
+```bash
+cp .env.example .env
+```
+
+```
+DB_PORT=
+DB_USER=
+DB_PASS=
+DB_NAME=
+
+JWT_SCRET=
+
+PORT=
+```
+
 ## Iniciar aplicação
 
 ```bash
@@ -88,23 +105,6 @@ curl --request POST \
     "email": "joe@doe.com",
     "user_name": "Joe Doe",
     "name": "Joe Doe",
-    "createdAt": "2022-04-01T01:27:34.366Z",
-    "updatedAt": "2022-04-01T01:27:34.366Z",
-    "__v": 0
-  }
-}
-```
-
-`Response`
-
-```json
-{
-  "user": {
-    "password": "$2a$08$dNf1dcrUoWbLKvdJ/TE.Xe5g5UKeAc5hsP4YWUzM9yZ6g9nG2eVpG",
-    "email": "joe@doe.com",
-    "user_name": "Joe Doe",
-    "name": "Joe Doe",
-    "_id": "62465506c400c6a99f34eb03",
     "createdAt": "2022-04-01T01:27:34.366Z",
     "updatedAt": "2022-04-01T01:27:34.366Z",
     "__v": 0
