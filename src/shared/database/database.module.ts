@@ -8,9 +8,8 @@ import configurate from '../config/configurate';
       useFactory: () => ({
         uri: `mongodb://${configurate().database.user}:${
           configurate().database.user
-        }@localhost:${configurate().database.port}/${
-          configurate().database.name
-        }`,
+        }@transactions-dev-db:${configurate().database.port}`,
+        dbName: configurate().database.name,
       }),
     }),
   ],
