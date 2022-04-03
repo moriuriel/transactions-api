@@ -10,11 +10,11 @@ services:
     restart: always
     command: yarn start:dev
     ports:
-      - '8080:8080'
+      - '${PORT}:${PORT}'
     volumes:
       - ./:/usr/src/app
     environment:
-      - PORT=8080
+      - PORT=${PORT}
     networks:
       - transactions
     depends_on:
@@ -25,15 +25,15 @@ services:
     container_name: 'transactions-dev-db'
     image: mongo
     restart: always
-    command: mongod --port 27018
+    command: mongod --port ${DB_PORT}
     ports:
-      - '27018:27018'
+      - '${DB_PORT}:${DB_PORT}'
     volumes:
       - ./.docker/db/mongodb:/data/db
       - ./.docker/db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: 'root'
-      MONGO_INITDB_ROOT_PASSWORD: 'root'
-      MONGO_INITDB_DATABASE: 'transactions'
+      MONGO_INITDB_ROOT_USERNAME: '${DB_USER}'
+      MONGO_INITDB_ROOT_PASSWORD: '${DB_PASS}'
+      MONGO_INITDB_DATABASE: '${DB_NAME}'
     networks:
       - transactions

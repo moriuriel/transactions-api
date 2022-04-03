@@ -21,11 +21,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install",
     "precommit": "lint-staged",
-    "docker:up": "docker-compose -f docker-compose.dev.yml up",
-    "docker:down": "docker-compose -f docker-compose.dev.yml down"
+    "docker:up": "env-cmd -f ./.env docker-compose -f docker-compose.dev.yml up",
+    "docker:down": "env-cmd -f ./.env docker-compose -f docker-compose.dev.yml down"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/jwt": "^8.0.0",
     "@nestjs/mongoose": "^9.0.1",
@@ -34,6 +35,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "env-cmd": "^10.1.0",
     "mongoose": "^6.1.1",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",

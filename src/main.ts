@@ -1,15 +1,20 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './exeception';
+import configurate from './shared/config/configurate';
+import { HttpExceptionFilter } from './shared/exeception';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const applicationPort = 8080;
+  const applicationPort = configurate().port;
 
   app.useGlobalPipes(new ValidationPipe());
+
   app.useGlobalFilters(new HttpExceptionFilter());
-  await app.listen(applicationPort);
+
+  await app.listen(applicationPort, () =>
+    console.log(`API is running ${applicationPort}`),
+  );
 }
 bootstrap();
