@@ -1,10 +1,14 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 
 enum TRANSACTION_TAG {
   'INCOME',
   'OUTCOME',
 }
+
+type Owner = {
+  _id: string;
+};
 
 @Schema({ timestamps: true, autoCreate: true })
 export class Transaction {
@@ -20,10 +24,10 @@ export class Transaction {
   @Prop({ default: false })
   isPaid: boolean;
 
-  @Prop({ required: true })
-  Owner: {
-    _id: string;
-  };
+  @Prop({ required: true, type: Object })
+  Owner: Owner;
 }
+
+export const TransactionSchema = SchemaFactory.createForClass(Transaction);
 
 export type TransactionDocument = Transaction & Document;
