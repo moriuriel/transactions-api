@@ -14,10 +14,10 @@ export class Transaction {
   tag: string;
 
   @Prop({ default: false })
-  isPaid: boolean;
+  is_pad: boolean;
 
   @Prop({ required: true, type: Object })
-  Owner: Owner;
+  owner: Owner;
 }
 
 export const TransactionSchema = SchemaFactory.createForClass(Transaction);

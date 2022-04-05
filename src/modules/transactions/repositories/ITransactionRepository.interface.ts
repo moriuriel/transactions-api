@@ -1,6 +1,13 @@
-import { ITransaction } from '../interfaces/shared.interface';
+import { Owner, TRANSACTION_TAG } from '../interfaces/shared.interface';
 import { Transaction } from '../schemas/Transaction.schema';
 
 export interface ITransactionRepository {
-  create(transaction: ITransaction): Promise<Transaction>;
+  create(transaction: ICreateTransaction): Promise<Transaction>;
+}
+
+export interface ICreateTransaction {
+  title: string;
+  tag: TRANSACTION_TAG;
+  is_pad: boolean;
+  owner: Owner;
 }

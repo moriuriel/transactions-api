@@ -1,7 +1,14 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  Inject,
+  HttpException,
+  HttpStatus,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
 import { UserRepository } from 'src/modules/users/repositories/User.repository';
+import configurate from 'src/shared/config/configurate';
 import { IAuthenticationUser } from '../interfaces';
 
 interface AuthReponse {
@@ -49,7 +56,10 @@ export default class AuthenticationService {
     const payload = { email: checkUserExist.email };
 
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, {
+        secret: configurate().jwt.secret,
+        expiresIn: '1d',
+      }),
     };
   }
 

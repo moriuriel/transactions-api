@@ -10,6 +10,5 @@ export enum TRANSACTION_TAG {
 export interface ITransaction {
   title: string;
   tag: TRANSACTION_TAG;
-  isPaid: boolean;
-  Owner: Owner;
+  is_pad: boolean;
 }
