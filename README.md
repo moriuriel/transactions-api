@@ -152,7 +152,7 @@ curl --request POST \
   --data '{
 	"title": "Conta",
 	"is_paid": false,
-	"tag": "OUTCOME"
+	"tag": "OUTCOME | INCOME"
 }'
 ```
 
