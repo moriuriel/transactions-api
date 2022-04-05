@@ -54,7 +54,7 @@ $ npm run test:cov
 
 ## API Request
 
-`USERS`
+`User`
 
 | Endpoint   | HTTP Method |        Descrição         |
 | ---------- | :---------: | :----------------------: |

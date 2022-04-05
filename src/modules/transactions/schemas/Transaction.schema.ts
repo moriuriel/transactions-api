@@ -1,14 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
-
-enum TRANSACTION_TAG {
-  'INCOME',
-  'OUTCOME',
-}
-
-type Owner = {
-  _id: string;
-};
+import { Owner, TRANSACTION_TAG } from '../interfaces/shared.interface';
 
 @Schema({ timestamps: true, autoCreate: true })
 export class Transaction {
