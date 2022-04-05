@@ -4,7 +4,7 @@
 
 ## Requisitos
 
-- Docker
+- docker
 - docker-compose
 
 ## Instalação
@@ -66,6 +66,12 @@ $ npm run test:cov
 | Endpoint | HTTP Method |      Descrição       |
 | -------- | :---------: | :------------------: |
 | `/auth`  |   `POST`    | `Autenticar usuário` |
+
+`Transactions`
+
+| Endpoint        | HTTP Method |       Descrição       |
+| --------------- | :---------: | :-------------------: |
+| `/transactions` |   `POST`    | `Criar uma transação` |
 
 ## Request via Curl
 
@@ -131,5 +137,40 @@ curl --request POST \
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZUBkb2UuY29tIiwiaWF0IjoxNjQ4Nzc2ODM1LCJleHAiOjE2NDg3NzY4OTV9.Jv0uo_d7cMdOwe7YLUEr6RCcblz2SMPQr5zdgBHwUoE"
+}
+```
+
+- Criar transação
+
+`Request`
+
+```curl
+curl --request POST \
+  --url http://localhost:3333/transactions \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZUBkb2UuY29tIiwiaWF0IjoxNjQ5MjAwNjMzLCJleHAiOjE2NDkyODcwMzN9.gkaNLax1ZOohdCQ_Jpz8MbYW6eCCJvlZi5_FevwIS7g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"title": "Conta",
+	"is_paid": false,
+	"tag": "OUTCOME"
+}'
+```
+
+`Response`
+
+```json
+{
+  "transaction": {
+    "owner": {
+      "_id": "624911579f3c966e3812f637"
+    },
+    "is_pad": false,
+    "tag": "OUTCOME",
+    "title": "Conta",
+    "_id": "624ccf515a87280a158e6a90",
+    "createdAt": "2022-04-05T23:22:57.855Z",
+    "updatedAt": "2022-04-05T23:22:57.855Z",
+    "__v": 0
+  }
 }
 ```
