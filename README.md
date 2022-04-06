@@ -1,5 +1,5 @@
 <h1 align="center">
-  Transactions API 🪙
+  Transactions API 🪙 ![test](https://github.com/moriuriel/transactions-api/actions/workflows/test.yml/badge.svg)
 </h1>
 
 ## Requisitos
