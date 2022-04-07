@@ -14,4 +14,10 @@ export class FakeTransactionRepository implements ITransactionRepository {
 
     return newTransaction;
   }
+
+  async findByOwnerId(owner_id: string): Promise<Transaction[]> {
+    return this.transactions.filter(
+      (transaction) => transaction.owner._id === owner_id,
+    );
+  }
 }
