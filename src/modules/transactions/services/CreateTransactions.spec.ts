@@ -8,7 +8,7 @@ let createTransactionService: CreateTransactionsService;
 let fakeTransactionRepository: FakeTransactionRepository;
 let fakeUserRepository: FakeUserRepository;
 
-describe('Create User Service', () => {
+describe('Create Transaction Service', () => {
   beforeEach(() => {
     fakeTransactionRepository = new FakeTransactionRepository();
     fakeUserRepository = new FakeUserRepository();

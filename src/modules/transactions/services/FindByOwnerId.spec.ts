@@ -7,7 +7,7 @@ let findByOwnerIdService: FindByOwnerIdService;
 let fakeTransactionRepository: FakeTransactionRepository;
 let fakeUserRepository: FakeUserRepository;
 
-describe('Create User Service', () => {
+describe('Find By Owner ID Service', () => {
   beforeEach(() => {
     fakeTransactionRepository = new FakeTransactionRepository();
     fakeUserRepository = new FakeUserRepository();
