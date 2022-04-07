@@ -5,9 +5,7 @@ import configurate from './shared/config/configurate';
 import { HttpExceptionFilter } from './shared/exeception';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn'],
-  });
+  const app = await NestFactory.create(AppModule);
 
   const applicationPort = configurate().port;
 

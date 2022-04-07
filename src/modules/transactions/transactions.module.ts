@@ -4,7 +4,7 @@ import { UsersModule } from '../users/users.module';
 import { TransactionsController } from './controllers/Transactions.controller';
 import { TransactionRepository } from './repositories/Transaction.repository';
 import { Transaction, TransactionSchema } from './schemas/Transaction.schema';
-import { CreateTransactionsService } from './services/CreateTransactions.service';
+import { CreateTransactionsService, FindByOwnerIdService } from './services';
 
 @Module({
   imports: [
@@ -14,6 +14,10 @@ import { CreateTransactionsService } from './services/CreateTransactions.service
     ]),
   ],
   controllers: [TransactionsController],
-  providers: [CreateTransactionsService, TransactionRepository],
+  providers: [
+    CreateTransactionsService,
+    TransactionRepository,
+    FindByOwnerIdService,
+  ],
 })
 export class TransactionsModule {}

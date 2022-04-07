@@ -69,9 +69,10 @@ $ npm run test:cov
 
 `Transactions`
 
-| Endpoint        | HTTP Method |       Descrição       |
-| --------------- | :---------: | :-------------------: |
-| `/transactions` |   `POST`    | `Criar uma transação` |
+| Endpoint        | HTTP Method |           Descrição            |
+| --------------- | :---------: | :----------------------------: |
+| `/transactions` |   `POST`    |     `Criar uma transação`      |
+| `/transactions` |    `GET`    | `Listar transações do usuário` |
 
 ## Request via Curl
 
@@ -89,6 +90,24 @@ curl --request POST \
 	"password": "password",
 	"email": "joe@doe.com"
 }'
+
+```
+
+`Response`
+
+```json
+{
+  "user": {
+    "password": "$2a$08$TqXQ0qRPHVXgGl0zhd2wJ.OzwceFgynGEq2qrtV2EFgukL2FBvxIG",
+    "email": "joe@doe.com",
+    "user_name": "Joe Doe",
+    "name": "Joe Doe",
+    "_id": "624911579f3c966e3812f637",
+    "createdAt": "2022-04-03T03:15:35.834Z",
+    "updatedAt": "2022-04-03T03:15:35.834Z",
+    "__v": 0
+  }
+}
 ```
 
 - Listar dados do usuário
@@ -172,5 +191,32 @@ curl --request POST \
     "updatedAt": "2022-04-05T23:22:57.855Z",
     "__v": 0
   }
+}
+```
+
+- Listar transações do usuário
+
+```curl
+curl --request GET \
+  --url http://localhost:3333/transactions \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvZUBkb2UuY29tIiwiaWF0IjoxNjQ5MzcyMTMwLCJleHAiOjE2NDk0NTg1MzB9.i_qUu3_debYaH0l15SRCnD-cgx6iDmhaOQZALx88HYs'
+```
+
+```json
+{
+  "transaction": [
+    {
+      "_id": "624ccf515a87280a158e6a90",
+      "owner": {
+        "_id": "624911579f3c966e3812f637"
+      },
+      "is_pad": false,
+      "tag": "OUTCOME",
+      "title": "Conta",
+      "createdAt": "2022-04-05T23:22:57.855Z",
+      "updatedAt": "2022-04-05T23:22:57.855Z",
+      "__v": 0
+    }
+  ]
 }
 ```

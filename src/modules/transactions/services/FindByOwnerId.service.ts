@@ -16,6 +16,7 @@ export class FindByOwnerIdService {
   ) {}
 
   async execute(email: string): Promise<Transaction[]> {
+    console.log(email);
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) throw new UnauthorizedException();
