@@ -1,3 +1,4 @@
+import { Types } from 'mongoose';
 import { IUser } from '../interfaces';
 import { User } from '../schemas/User.schema';
 import { IUserRepository } from './IUserRepository.interface';
@@ -9,6 +10,7 @@ export class FakeUserRepository implements IUserRepository {
     const newUser = new User();
 
     Object.assign(newUser, {
+      _id: new Types.ObjectId(),
       ...user,
     });
 

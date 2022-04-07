@@ -18,7 +18,7 @@ export class TransactionRepository implements ITransactionRepository {
     return this.transactionRepository.create(transaction);
   }
 
-  async findByOnwerId(owner_id: string): Promise<Transaction[]> {
+  async findByOwnerId(owner_id: string): Promise<Transaction[]> {
     return this.transactionRepository.find({ owner: { _id: owner_id } });
   }
 }

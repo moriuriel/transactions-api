@@ -3,7 +3,7 @@ import { Transaction } from '../schemas/Transaction.schema';
 
 export interface ITransactionRepository {
   create(transaction: ICreateTransaction): Promise<Transaction>;
-  findByOnwerId(owner_id: string): Promise<Transaction[]>;
+  findByOwnerId(owner_id: string): Promise<Transaction[]>;
 }
 
 export interface ICreateTransaction {
