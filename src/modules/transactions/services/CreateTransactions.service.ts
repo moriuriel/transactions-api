@@ -2,7 +2,7 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { IUserRepository } from 'src/modules/users/repositories/IUserRepository.interface';
 import { UserRepository } from 'src/modules/users/repositories/User.repository';
 import { DATABASE_ERROR } from 'src/shared/exeception';
-import { ICreateTransactionService } from '../interfaces/services.interface';
+import { ICreateTransactionService } from '../interfaces';
 
 import { ITransactionRepository } from '../repositories/ITransactionRepository.interface';
 import { TransactionRepository } from '../repositories/Transaction.repository';
